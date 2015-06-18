@@ -68,11 +68,11 @@ post '/songs' do
     author:   params[:author],
     url:      params[:url],
     user_id:  get_current_user.id
-    ) 
+    )
   if @track.save
     redirect '/'
   else
-    erb :'/new'
+    erb :'/songs/new'
   end
 end
 
