@@ -19,7 +19,7 @@ get '/songs' do
   erb :"songs/index"
 end
 
- get '/login' { redirect '/user_session/new' }
+get '/login' do redirect '/user_session/new' end
 get '/user_session/new' do
   erb :'user_session/new'
 end
