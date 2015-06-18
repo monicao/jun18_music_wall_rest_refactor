@@ -1,0 +1,18 @@
+<h3 class="text-center">All Songs</h3>
+<br />
+<div class="text-center">
+<% @tracks.each do |song| %>
+  <p>Song Title: <%= song.title %></p>
+  <p>Artist: <%= song.author %></p>
+  <p>URL: <a href="<%= song.url %>"> <%= song.url %> </a></p>
+  <% if user_logged_in? %>
+  <span>
+    <a href="/upvote/<%= song.id %>"><i class="glyphicon glyphicon-triangle-top"></i></a>
+    <%= song.total_votes %>
+    <a href="/downvote/<%= song.id %>"><i class="glyphicon glyphicon-triangle-bottom"></i></a>
+  </span>
+  <% end %>
+
+  <br /><br />
+<% end %>
+</div>

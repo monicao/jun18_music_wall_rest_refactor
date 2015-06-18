@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/application.css">
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/javascript/application.js"></script>
+
+  <title>Music Wall</title>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/"><i class="glyphicon glyphicon-headphones"></i> MusicWall</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if user_logged_in? %>
+        <li class="active"><a href="/new">New <span class="sr-only">(current)</span></a></li>
+        <% end %>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+         <% if user_logged_in? %>
+            <li><a href="#">Welcome <strong><%= get_current_user.email %></strong></a></li>
+            <li><a href="/logout">Logout</a></li>
+          <% else %>
+            <li><a href="/users/new">Register</a></li>
+            <li><a href="/login">Login</a></li>
+         <% end %> 
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-6 col-md-offset-2 col-md-8"><%= yield %></div>
+    </div>
+    <div class="row"></div>
+</div>
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/javascript/application.js"></script>
+  <script src="/javascript/bootstrap.min.js></script>
+</body>
+</html>
