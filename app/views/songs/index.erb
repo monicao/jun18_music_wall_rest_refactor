@@ -7,9 +7,15 @@
   <p>URL: <a href="<%= song.url %>"> <%= song.url %> </a></p>
   <% if user_logged_in? %>
   <span>
-    <a href="/upvote/<%= song.id %>"><i class="glyphicon glyphicon-triangle-top"></i></a>
+    <form method="POST" action="/songs/<%= song.id %>/votes">
+      <input type="hidden" name="type" value="upvote">
+      <input type="submit" value="Upvote">
+    </form>
     <%= song.total_votes %>
-    <a href="/downvote/<%= song.id %>"><i class="glyphicon glyphicon-triangle-bottom"></i></a>
+    <form method="POST" action="/songs/<%= song.id %>/votes">
+      <input type="hidden" name="type" value="downvote">
+      <input type="submit" value="Downvote">
+    </form>
   </span>
   <% end %>
 

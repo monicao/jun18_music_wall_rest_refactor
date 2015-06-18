@@ -76,20 +76,18 @@ post '/songs' do
   end
 end
 
-get '/upvote/:id' do
+post '/songs/:song_id/votes' do
+  if params[:type] == "upvote"
+    vote_count = 1
+  else
+    vote_count = -1
+  end
+
   Vote.create(
     user_id: get_current_user.id,
-    song_id: params[:id],
-    vote_count: 1
+    song_id: params[:song_id],
+    vote_count: vote_count
     )
   redirect '/'
 end
 
-get '/downvote/:id' do
-  Vote.create(
-    user_id: get_current_user.id, 
-    song_id: params[:id],
-    vote_count: -1
-    )
-  redirect '/'
-end
