@@ -11,8 +11,12 @@ helpers do
 end
 
 get '/' do
+  redirect '/songs'
+end
+
+get '/songs' do
   @tracks = Track.all
-  erb :index
+  erb :"songs/index"
 end
 
  get '/login' { redirect '/user_session/new' }
@@ -54,8 +58,8 @@ post '/users' do
   end
 end
 
-get '/new' do
-  erb :'/new'
+get '/songs/new' do
+  erb :'songs/new'
 end 
 
 post '/songs' do
