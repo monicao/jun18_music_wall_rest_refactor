@@ -35,7 +35,12 @@
       <ul class="nav navbar-nav navbar-right">
          <% if user_logged_in? %>
             <li><a href="#">Welcome <strong><%= get_current_user.email %></strong></a></li>
-            <li><a href="/logout">Logout</a></li>
+            <li>
+              <form method="POST" action="/user_session">
+                <input type="hidden" name="_method" value="delete">
+                <input type="submit" value="Logout">
+              </form>
+            </li>
           <% else %>
             <li><a href="/users/new">Register</a></li>
             <li><a href="/login">Login</a></li>

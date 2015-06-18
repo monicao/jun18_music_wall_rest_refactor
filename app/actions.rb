@@ -15,22 +15,24 @@ get '/' do
   erb :index
 end
 
-get '/login' do
-  erb :'users/login'
+ get '/login' { redirect '/user_session/new' }
+get '/user_session/new' do
+  erb :'user_session/new'
 end
 
-post '/login' do
+post '/user_session' do
   @user = User.find_by_email(params[:email])
 
-  if @user
+  if @user && @user.password == params[:password]
     session[:email] = @user.email
     redirect '/'
   else
-    erb :'users/new'
+    erb :'user_session/new'  # sends back HTML. we can use the @user.email to keep the email populated in the user_session/new.erb form.
+    # redirect '/user_session/new'  # asks the browser to make a brand new request for '/user_session/new'
   end
 end
 
-get '/logout' do
+delete '/user_session' do
   session[:email] = ""
   redirect '/'
 end
@@ -46,7 +48,7 @@ post '/users' do
     password: params[:password]
     )
   if @user.save
-    redirect '/login'
+    redirect '/user_session/new'
   else
     erb :'users/new'
   end
